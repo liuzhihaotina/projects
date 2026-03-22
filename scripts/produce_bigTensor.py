@@ -1,6 +1,6 @@
 import torch
 
-frames_len = 100
+frames_len = 10
 frames = list()
 d1 = [2, 3, 5, 6, 8, 7, 3, 1, 10, 9, 5, 3, 6, 7, 8]
 for i in range(frames_len):
