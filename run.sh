@@ -16,11 +16,13 @@ Run a ROS 2 package from this workspace.
 Packages:
   hello_world_demo   -> hello_world
   topic_demo         -> topic_pub or topic_sub
+  service_demo       -> service_client or service_server
 
 Examples:
   $0             # choose package interactively
   $0 hello_world_demo
   $0 topic_demo topic_sub
+  $0 service_demo service_client
 EOF
 }
 
@@ -52,6 +54,45 @@ run_package() {
           ;;
       esac
       ;;
+    service_demo)
+      case "${exe}" in
+        service_client)
+          echo "请输入两个整数 (用空格分隔):"
+          read -r a b
+          if [[ -z "$a" || -z "$b" ]]; then
+            echo "输入无效，请提供两个整数。" >&2
+            exit 1
+          fi
+          ros2 run service_demo service_client "$a" "$b"
+          ;;
+        service_server)
+          ros2 run service_demo service_server
+          ;;
+        "" )
+          echo "Select executable for service_demo:"
+          select choice in service_client service_server; do
+            if [[ -n "${choice}" ]]; then
+              if [[ "${choice}" == "service_client" ]]; then
+                echo "请输入两个整数 (用空格分隔):"
+                read -r a b
+                if [[ -z "$a" || -z "$b" ]]; then
+                  echo "输入无效，请提供两个整数。" >&2
+                  exit 1
+                fi
+                ros2 run service_demo service_client "$a" "$b"
+              else
+                ros2 run service_demo "${choice}"
+              fi
+              break
+            fi
+          done
+          ;;
+        *)
+          echo "Invalid executable for service_demo: ${exe}" >&2
+          exit 1
+          ;;
+      esac
+      ;;
     *)
       echo "Unknown package: ${pkg}" >&2
       exit 1
@@ -70,7 +111,7 @@ if [[ -n "$1" ]]; then
 fi
 
 PS3="请选择要运行的功能包 (输入编号)： "
-select pkg in hello_world_demo topic_demo; do
+select pkg in hello_world_demo topic_demo service_demo; do
   if [[ -n "${pkg}" ]]; then
     run_package "${pkg}" ""
     break
