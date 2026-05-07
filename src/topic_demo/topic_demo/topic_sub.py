@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+# from std_msgs.msg import String
+from demo_interfaces.msg import String
 
 class TopicDemoSubscriber(Node):
     def __init__(self):
