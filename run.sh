@@ -17,12 +17,14 @@ Packages:
   hello_world_demo   -> hello_world
   topic_demo         -> topic_pub or topic_sub
   service_demo       -> service_client or service_server
+  action_demo        -> action_client or action_server
 
 Examples:
   $0             # choose package interactively
   $0 hello_world_demo
   $0 topic_demo topic_sub
   $0 service_demo service_client
+  $0 action_demo action_server
 EOF
 }
 
@@ -93,6 +95,26 @@ run_package() {
           ;;
       esac
       ;;
+    action_demo)
+      case "${exe}" in
+        action_client|action_server)
+          ros2 run action_demo "${exe}"
+          ;;
+        "" )
+          echo "Select executable for action_demo:"
+          select choice in action_client action_server; do
+            if [[ -n "${choice}" ]]; then
+              ros2 run action_demo "${choice}"
+              break
+            fi
+          done
+          ;;
+        *)
+          echo "Invalid executable for action_demo: ${exe}" >&2
+          exit 1
+          ;;
+      esac
+      ;;
     *)
       echo "Unknown package: ${pkg}" >&2
       exit 1
@@ -111,7 +133,7 @@ if [[ -n "$1" ]]; then
 fi
 
 PS3="请选择要运行的功能包 (输入编号)： "
-select pkg in hello_world_demo topic_demo service_demo; do
+select pkg in hello_world_demo topic_demo service_demo action_demo; do
   if [[ -n "${pkg}" ]]; then
     run_package "${pkg}" ""
     break

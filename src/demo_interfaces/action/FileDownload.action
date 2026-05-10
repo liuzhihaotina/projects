@@ -1,0 +1,5 @@
+int32 file_size
+---
+int32 current_size
+---
+float32 completion_percentage
