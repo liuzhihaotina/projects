@@ -1,0 +1,21 @@
+编译 source环境变量
+cd /workspace/ros2_ws
+colcon build
+source install/setup.bash
+
+每个功能包单独运行命令
+
+1. hello_world_demo
+ros2 run hello_world_demo hello_world
+
+2. topic_demo
+ros2 run topic_demo topic_pub
+ros2 run topic_demo topic_sub
+
+3. service_demo
+ros2 run service_demo service_server
+ros2 run service_demo service_client 5 10
+
+4. action_demo
+ros2 run action_demo action_server
+ros2 run action_demo action_client
