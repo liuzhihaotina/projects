@@ -34,3 +34,7 @@ ros2 param set param_demo_node my_param changed_value05102051
 单独编译 colcon build --packages-select DDS_qos_demo --symlink-install && source install/setup.bash
 ros2 run DDS_qos_demo dds_qos_pub_node
 ros2 run DDS_qos_demo dds_qos_sub_node
+
+7 launch_demo  # 运行多个节点
+单独编译 colcon build --packages-select launch_demo --symlink-install && source install/setup.bash
+ros2 launch launch_demo single_node.launch.py
