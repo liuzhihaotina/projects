@@ -29,3 +29,8 @@ ros2 run action_demo action_client
 5. param_demo
 ros2 run param_demo param_demo_node
 ros2 param set param_demo_node my_param changed_value05102051
+
+6. DDS_qos_demo
+单独编译 colcon build --packages-select DDS_qos_demo --symlink-install && source install/setup.bash
+ros2 run DDS_qos_demo dds_qos_pub_node
+ros2 run DDS_qos_demo dds_qos_sub_node
