@@ -43,3 +43,4 @@ ros2 launch launch_demo remapping.launch.py
 ros2 launch launch_demo param.launch.py
 ros2 launch launch_demo param_yaml.launch.py
 ros2 launch launch_demo launch_include.launch.py
+ros2 launch launch_demo launch_include_multi.launch.py
