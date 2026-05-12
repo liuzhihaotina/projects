@@ -41,3 +41,4 @@ colcon build --packages-select launch_demo --symlink-install && source install/s
 ros2 launch launch_demo single_node.launch.py
 ros2 launch launch_demo remapping.launch.py
 ros2 launch launch_demo param.launch.py
+ros2 launch launch_demo param_yaml.launch.py
