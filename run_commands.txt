@@ -44,3 +44,19 @@ ros2 launch launch_demo param.launch.py
 ros2 launch launch_demo param_yaml.launch.py
 ros2 launch launch_demo launch_include.launch.py
 ros2 launch launch_demo launch_include_multi.launch.py
+
+8 tf_demo
+colcon build --packages-select tf_demo && source install/setup.bash
+
+# 先起 broadcaster
+ros2 run tf_demo static_tf_broadcaster &
+# 再起 listener（默认查 world -> base_link）
+ros2 run tf_demo tf_listener
+ros2 run tf_demo static_tf_broadcaster & ros2 run tf_demo tf_listene
+
+# 改坐标系或周期
+ros2 run tf_demo tf_listener --ros-args \
+  -p source_frame:=world -p target_frame:=base_link -p timer_period:=0.5
+
+# 运行时动态切换目标
+ros2 param set /tf_listener target_frame base_link
