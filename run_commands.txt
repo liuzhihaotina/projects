@@ -60,3 +60,7 @@ ros2 run tf_demo tf_listener --ros-args \
 
 # 运行时动态切换目标
 ros2 param set /tf_listener target_frame base_link
+
+9 urdf_demo
+colcon build --packages-select urdf_demo && source install/setup.bash
+ros2 launch urdf_demo rviz_view.launch.py
