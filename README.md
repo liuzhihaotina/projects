@@ -27,3 +27,12 @@
   <img src="md_1.png" width=60%>
   <figcaption></figcaption>
 </figure>
+
+## leetcode-native-timer-manual.user.js
+
+防止自动计时
+
+<figure align="left">
+  <img src="timer.png" width=40%>
+  <figcaption></figcaption>
+</figure>
